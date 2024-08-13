@@ -5,15 +5,23 @@ import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import com.trios2024evdj.listmaker.databinding.ActivityMainBinding
 import com.trios2024evdj.listmaker.ui.main.MainFragment
+import com.trios2024evdj.listmaker.ui.main.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel =ViewModelProvider(this,
+            MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(this)))
+            .get(MainViewModel::class.java)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
