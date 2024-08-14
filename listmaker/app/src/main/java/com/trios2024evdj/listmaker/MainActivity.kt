@@ -10,6 +10,7 @@ import androidx.preference.PreferenceManager
 import com.trios2024evdj.listmaker.databinding.ActivityMainBinding
 import com.trios2024evdj.listmaker.ui.main.MainFragment
 import com.trios2024evdj.listmaker.ui.main.MainViewModel
+import com.trios2024evdj.listmaker.ui.main.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         viewModel =ViewModelProvider(this,
-            MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(this)))
+            MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(this))
+        )
             .get(MainViewModel::class.java)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
