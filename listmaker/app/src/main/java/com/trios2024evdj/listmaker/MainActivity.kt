@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.trios2024evdj.listmaker.databinding.ActivityMainBinding
+import com.trios2024evdj.listmaker.models.TaskList
 import com.trios2024evdj.listmaker.ui.main.MainFragment
 import com.trios2024evdj.listmaker.ui.main.MainViewModel
 import com.trios2024evdj.listmaker.ui.main.MainViewModelFactory
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         builder.setPositiveButton(positiveButtonTitle) {
             dialog, _ -> dialog.dismiss()
+            viewModel.saveList(TaskList(listTitleEditText.text.toString()))
         }
         builder.create().show()
     }

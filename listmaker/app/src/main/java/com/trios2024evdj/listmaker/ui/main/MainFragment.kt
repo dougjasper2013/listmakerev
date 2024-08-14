@@ -37,7 +37,7 @@ class MainFragment : Fragment() {
 
         binding.listsRecyclerview.layoutManager =
             LinearLayoutManager(requireContext())
-        binding.listsRecyclerview.adapter = ListSelectionRecyclerViewAdapter()
+        // binding.listsRecyclerview.adapter = ListSelectionRecyclerViewAdapter()
 
         return binding.root
     }
@@ -47,6 +47,14 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(),
             MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(requireActivity())))
             .get(MainViewModel::class.java)
+        val recyclerViewAdapter =
+            ListSelectionRecyclerViewAdapter(viewModel.lists)
+
+        binding.listsRecyclerview.adapter = recyclerViewAdapter
+
+        viewModel.onListAdded = {
+            recyclerViewAdapter.listsUpdated()
+        }
     }
 
 
